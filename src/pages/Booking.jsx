@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import axios from 'axios'
+import apiClient from '../config/axios'
 
 const Booking = () => {
   const [formData, setFormData] = useState({
@@ -41,9 +41,7 @@ const Booking = () => {
     setLoading(true)
 
     try {
-      const response = await axios.post('/api/booking/request-callback', formData, {
-        withCredentials: true
-      })
+      const response = await apiClient.post('/api/booking/request-callback', formData)
 
       if (response.data.success) {
         setSubmitted(true)
