@@ -168,16 +168,17 @@ const Home = () => {
               className="relative w-72 h-[500px] flex-shrink-0 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer group block"
             >
               {/* Background Image */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${trip.image})` }}
-              >
-                {/* Overlay for better text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
-              </div>
+              <img
+                src={trip.image}
+                alt={trip.name}
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+              />
+              {/* Overlay for better text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
               
               {/* Content */}
-              <div className="relative h-full flex flex-col justify-end p-6 text-white">
+              <div className="relative h-full flex flex-col justify-end p-6 text-white z-10">
                 <h3 className="text-3xl font-bold mb-3 drop-shadow-lg">{trip.name}</h3>
                 <div className="flex flex-col gap-1">
                   <span className="text-sm text-gray-300">Starting Price</span>
@@ -202,16 +203,17 @@ const Home = () => {
               className="relative w-72 h-[500px] flex-shrink-0 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer group block"
             >
               {/* Background Image */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${trip.image})` }}
-              >
-                {/* Overlay for better text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
-              </div>
+              <img
+                src={trip.image}
+                alt={trip.name}
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+              />
+              {/* Overlay for better text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
               
               {/* Content */}
-              <div className="relative h-full flex flex-col justify-end p-6 text-white">
+              <div className="relative h-full flex flex-col justify-end p-6 text-white z-10">
                 <h3 className="text-3xl font-bold mb-3 drop-shadow-lg">{trip.name}</h3>
                 <div className="flex flex-col gap-1">
                   <span className="text-sm text-gray-300">Starting Price</span>
@@ -236,16 +238,17 @@ const Home = () => {
               className="relative w-72 h-[500px] flex-shrink-0 rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transform hover:scale-105 transition-all duration-300 cursor-pointer group block"
             >
               {/* Background Image */}
-              <div 
-                className="absolute inset-0 bg-cover bg-center"
-                style={{ backgroundImage: `url(${trip.image})` }}
-              >
-                {/* Overlay for better text readability */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
-              </div>
+              <img
+                src={trip.image}
+                alt={trip.name}
+                className="absolute inset-0 w-full h-full object-cover"
+                loading="lazy"
+              />
+              {/* Overlay for better text readability */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
               
               {/* Content */}
-              <div className="relative h-full flex flex-col justify-end p-6 text-white">
+              <div className="relative h-full flex flex-col justify-end p-6 text-white z-10">
                 <h3 className="text-3xl font-bold mb-3 drop-shadow-lg">{trip.name}</h3>
                 <div className="flex flex-col gap-1">
                   <span className="text-sm text-gray-300">Starting Price</span>
