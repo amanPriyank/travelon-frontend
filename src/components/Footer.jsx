@@ -26,7 +26,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {internationalTrips.map((trip) => (
                 <li key={trip}>
-                  <Link to="/" className="text-gray-300 hover:text-neon-cyan transition-colors">
+                  <Link to="/" className="text-gray-300 hover:text-neon-cyan transition-colors cursor-pointer">
                     {trip}
                   </Link>
                 </li>
@@ -40,7 +40,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {indiaTrips.map((trip) => (
                 <li key={trip}>
-                  <Link to="/" className="text-gray-300 hover:text-neon-cyan transition-colors">
+                  <Link to="/" className="text-gray-300 hover:text-neon-cyan transition-colors cursor-pointer">
                     {trip}
                   </Link>
                 </li>
@@ -53,22 +53,22 @@ const Footer = () => {
             <h3 className="text-xl font-bold mb-4 text-neon-cyan">WanderOn Special</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-gray-300 hover:text-neon-cyan transition-colors">
+                <Link to="/" className="text-gray-300 hover:text-neon-cyan transition-colors cursor-pointer">
                   Community Trips
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-gray-300 hover:text-neon-cyan transition-colors">
+                <Link to="/" className="text-gray-300 hover:text-neon-cyan transition-colors cursor-pointer">
                   Honeymoon Trips
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-gray-300 hover:text-neon-cyan transition-colors">
+                <Link to="/" className="text-gray-300 hover:text-neon-cyan transition-colors cursor-pointer">
                   Corporate Trips
                 </Link>
               </li>
               <li>
-                <Link to="/" className="text-gray-300 hover:text-neon-cyan transition-colors">
+                <Link to="/" className="text-gray-300 hover:text-neon-cyan transition-colors cursor-pointer">
                   Weekend Getaways
                 </Link>
               </li>
@@ -81,7 +81,7 @@ const Footer = () => {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link}>
-                  <Link to="/" className="text-gray-300 hover:text-neon-cyan transition-colors">
+                  <Link to="/" className="text-gray-300 hover:text-neon-cyan transition-colors cursor-pointer">
                     {link}
                   </Link>
                 </li>
@@ -92,7 +92,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-700 mt-8 pt-8 text-center">
           <p className="text-gray-400">
-            © 2024 TravelOn. All rights reserved. Made with ❤️ for travelers.
+            © 2026 TravelOn. All rights reserved. Made with ❤️ for travelers.
           </p>
         </div>
       </div>
