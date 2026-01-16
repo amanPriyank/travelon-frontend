@@ -1,5 +1,5 @@
 import { createContext, useState, useEffect, useContext } from 'react'
-import apiClient from '../config/axios'
+import { authAPI } from '../services/api'
 
 const AuthContext = createContext()
 
@@ -20,60 +20,36 @@ export const AuthProvider = ({ children }) => {
   }, [])
 
   const checkAuth = async () => {
-    try {
-      const response = await apiClient.get('/api/auth/me')
-      if (response.data.success) {
-        setUser(response.data.user)
-      }
-    } catch (error) {
+    const result = await authAPI.checkAuth()
+    if (result.success) {
+      setUser(result.user)
+    } else {
       setUser(null)
-    } finally {
-      setLoading(false)
     }
+    setLoading(false)
   }
 
   const login = async (email, password) => {
-    try {
-      const response = await apiClient.post('/api/auth/login', 
-        { email, password }
-      )
-      if (response.data.success) {
-        setUser(response.data.user)
-        return { success: true }
-      }
-    } catch (error) {
-      return { 
-        success: false, 
-        message: error.response?.data?.message || 'Login failed' 
-      }
+    const result = await authAPI.login(email, password)
+    if (result.success) {
+      setUser(result.user)
+      return { success: true }
     }
+    return result
   }
 
   const signup = async (username, email, password) => {
-    try {
-      const response = await apiClient.post('/api/auth/register', 
-        { username, email, password }
-      )
-      if (response.data.success) {
-        setUser(response.data.user)
-        return { success: true }
-      }
-    } catch (error) {
-      return { 
-        success: false, 
-        message: error.response?.data?.message || 'Registration failed',
-        errors: error.response?.data?.errors 
-      }
+    const result = await authAPI.register(username, email, password)
+    if (result.success) {
+      setUser(result.user)
+      return { success: true }
     }
+    return result
   }
 
   const logout = async () => {
-    try {
-      await apiClient.post('/api/auth/logout', {})
-      setUser(null)
-    } catch (error) {
-      console.error('Logout error:', error)
-    }
+    await authAPI.logout()
+    setUser(null)
   }
 
   return (

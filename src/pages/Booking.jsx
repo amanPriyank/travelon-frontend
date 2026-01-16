@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import apiClient from '../config/axios'
+import { bookingAPI } from '../services/api'
 
 const Booking = () => {
   const [formData, setFormData] = useState({
@@ -40,22 +40,24 @@ const Booking = () => {
     setError('')
     setLoading(true)
 
-    try {
-      const response = await apiClient.post('/api/booking/request-callback', formData)
+    const result = await bookingAPI.requestCallback(
+      formData.packageName,
+      parseInt(formData.numberOfPeople),
+      parseInt(formData.numberOfDays)
+    )
 
-      if (response.data.success) {
-        setSubmitted(true)
-        setFormData({
-          packageName: '',
-          numberOfPeople: '',
-          numberOfDays: ''
-        })
-      }
-    } catch (err) {
-      setError(err.response?.data?.message || 'Something went wrong. Please try again.')
-    } finally {
-      setLoading(false)
+    if (result.success) {
+      setSubmitted(true)
+      setFormData({
+        packageName: '',
+        numberOfPeople: '',
+        numberOfDays: ''
+      })
+    } else {
+      setError(result.message || 'Something went wrong. Please try again.')
     }
+
+    setLoading(false)
   }
 
   if (submitted) {

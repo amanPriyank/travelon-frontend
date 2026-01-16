@@ -8,22 +8,58 @@ const Login = () => {
     password: ''
   })
   const [error, setError] = useState('')
+  const [emailError, setEmailError] = useState('')
   const [loading, setLoading] = useState(false)
   const [showPassword, setShowPassword] = useState(false)
   const { user, login } = useAuth()
   const navigate = useNavigate()
 
+  const validateEmail = (email) => {
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    return emailRegex.test(email)
+  }
+
   const handleChange = (e) => {
+    const { name, value } = e.target
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: value
     })
     setError('')
+    
+    // Frontend email validation
+    if (name === 'email' && value) {
+      if (!validateEmail(value)) {
+        setEmailError('Please provide a valid email address')
+      } else {
+        setEmailError('')
+      }
+    } else if (name === 'email' && !value) {
+      setEmailError('')
+    }
   }
 
   const handleSubmit = async (e) => {
     e.preventDefault()
     setError('')
+    setEmailError('')
+
+    // Frontend validation
+    if (!formData.email) {
+      setError('Email is required')
+      return
+    }
+
+    if (!validateEmail(formData.email)) {
+      setEmailError('Please provide a valid email address')
+      return
+    }
+
+    if (!formData.password) {
+      setError('Password is required')
+      return
+    }
+
     setLoading(true)
 
     const result = await login(formData.email, formData.password)
@@ -31,6 +67,7 @@ const Login = () => {
     if (result.success) {
       navigate('/booking')
     } else {
+      // Display specific error message from backend
       setError(result.message || 'Login failed. Please try again.')
     }
     
@@ -92,9 +129,14 @@ const Login = () => {
                 required
                 value={formData.email}
                 onChange={handleChange}
-                className="appearance-none relative block w-full px-4 py-3 border border-gray-300 placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                className={`appearance-none relative block w-full px-4 py-3 border ${
+                  emailError ? 'border-red-300' : 'border-gray-300'
+                } placeholder-gray-500 text-gray-900 rounded-lg focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent`}
                 placeholder="Email address"
               />
+              {emailError && (
+                <p className="mt-1 text-sm text-red-600">{emailError}</p>
+              )}
             </div>
             <div>
               <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">
