@@ -1,13 +1,12 @@
 import axios from 'axios'
 
-// Set the base URL for API calls
-// Use environment variable if available, otherwise use the production URL
+// Get API URL from env or use production URL
 const API_BASE_URL = import.meta.env.VITE_API_URL || 'https://travelon-backend.onrender.com'
 
-// Create axios instance with default config
+// Create axios instance with cookies enabled
 const apiClient = axios.create({
   baseURL: API_BASE_URL,
-  withCredentials: true, // Important for cookies
+  withCredentials: true, // Send cookies with requests
   headers: {
     'Content-Type': 'application/json'
   }

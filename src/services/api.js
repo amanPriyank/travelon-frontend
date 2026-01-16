@@ -1,16 +1,12 @@
 import apiClient from '../config/axios'
 
-/**
- * Helper function to extract specific error message from backend validation errors
- * @param {Object} error - The error object from axios
- * @param {string} defaultMessage - Default error message if no specific error found
- * @returns {Object} - Object with success: false, message, and errors array
- */
+// Extract the actual error message from backend response
+// If there are validation errors, use the first one's message
 const extractErrorMessage = (error, defaultMessage = 'Request failed') => {
   const errors = error.response?.data?.errors
   let errorMessage = error.response?.data?.message || defaultMessage
   
-  // If there are validation errors, use the first error's message
+  // Use the first validation error message if available
   if (errors && Array.isArray(errors) && errors.length > 0) {
     errorMessage = errors[0].msg || errorMessage
   }
@@ -22,14 +18,9 @@ const extractErrorMessage = (error, defaultMessage = 'Request failed') => {
   }
 }
 
-/**
- * Auth API Services
- */
+// API functions for authentication
 export const authAPI = {
-  /**
-   * Check if user is authenticated
-   * @returns {Promise<Object>} - User object if authenticated, null otherwise
-   */
+  // Check if user is logged in
   checkAuth: async () => {
     try {
       const response = await apiClient.get('/api/auth/me')
@@ -42,12 +33,7 @@ export const authAPI = {
     }
   },
 
-  /**
-   * Login user
-   * @param {string} email - User email
-   * @param {string} password - User password
-   * @returns {Promise<Object>} - Success status and user data or error message
-   */
+  // Login with email and password
   login: async (email, password) => {
     try {
       const response = await apiClient.post('/api/auth/login', { email, password })
@@ -66,13 +52,7 @@ export const authAPI = {
     }
   },
 
-  /**
-   * Register new user
-   * @param {string} username - Username
-   * @param {string} email - User email
-   * @param {string} password - User password
-   * @returns {Promise<Object>} - Success status and user data or error message
-   */
+  // Register a new user
   register: async (username, email, password) => {
     try {
       const response = await apiClient.post('/api/auth/register', {
@@ -95,10 +75,7 @@ export const authAPI = {
     }
   },
 
-  /**
-   * Logout user
-   * @returns {Promise<Object>} - Success status
-   */
+  // Logout the current user
   logout: async () => {
     try {
       await apiClient.post('/api/auth/logout', {})
@@ -110,17 +87,9 @@ export const authAPI = {
   }
 }
 
-/**
- * Booking API Services
- */
+// API functions for booking
 export const bookingAPI = {
-  /**
-   * Request callback for booking
-   * @param {string} packageName - Package name
-   * @param {number} numberOfPeople - Number of people
-   * @param {number} numberOfDays - Number of days
-   * @returns {Promise<Object>} - Success status and message or error
-   */
+  // Submit a callback request for booking
   requestCallback: async (packageName, numberOfPeople, numberOfDays) => {
     try {
       const response = await apiClient.post('/api/booking/request-callback', {

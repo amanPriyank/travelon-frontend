@@ -25,7 +25,7 @@ const Login = () => {
       ...formData,
       [name]: value
     })
-    // Clear errors when user starts typing
+    // Clear any errors when user starts typing
     setError('')
     setEmailError('')
   }
@@ -35,7 +35,7 @@ const Login = () => {
     setError('')
     setEmailError('')
 
-    // Frontend validation
+    // Validate email format before submitting
     if (!formData.email) {
       setError('Email is required')
       return
@@ -58,14 +58,14 @@ const Login = () => {
     if (result.success) {
       navigate('/booking')
     } else {
-      // Display specific error message from backend
+      // Show the error message from backend
       setError(result.message || 'Login failed. Please try again.')
     }
     
     setLoading(false)
   }
 
-  // If user is already logged in, show message
+  // Show message if already logged in
   if (user) {
     return (
       <div className="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
