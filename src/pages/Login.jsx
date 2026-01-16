@@ -25,18 +25,9 @@ const Login = () => {
       ...formData,
       [name]: value
     })
+    // Clear errors when user starts typing
     setError('')
-    
-    // Frontend email validation
-    if (name === 'email' && value) {
-      if (!validateEmail(value)) {
-        setEmailError('Please provide a valid email address')
-      } else {
-        setEmailError('')
-      }
-    } else if (name === 'email' && !value) {
-      setEmailError('')
-    }
+    setEmailError('')
   }
 
   const handleSubmit = async (e) => {
